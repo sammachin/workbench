@@ -1,7 +1,7 @@
 {
-    "name": "electron-node-red",
-    "version": "1.0.2",
-    "description": "Electron Node-RED application starter",
+    "name": "electron-node-red-workbench",
+    "version": "1.0.4",
+    "description": "Electron Node-RED with ngrok",
     "author": "zuhito",
     "main": "main.js",
     "scripts": {
@@ -20,12 +20,7 @@
     "dependencies": {
         "node-red": "*",
         "node-red-dashboard": "*",
-        "node-red-contrib-web-worldmap": "*",
-        "node-red-node-geofence": "*",
-        "node-red-node-random": "*",
-        "node-red-node-smooth": "*",
-        "node-red-contrib-play-audio": "*",
-        "node-red-node-base64": "*",
+        "node-red-contrib-nexmo": "*",
         "express": "*"
     },
     "keywords": [
@@ -41,13 +36,19 @@
         },
         {
             "name": "zuhito"
+        },
+        {
+            "name": "Sam Machin"
+        },
+        {
+            "name": "Julia Biro"
         }
     ],
     "license": "Apache-2.0",
     "bugs": {
-        "url": "https://github.com/zuhito/electron-node-red/issues"
+        "url": "https://github.com/sammachin/electron-node-red/issues"
     },
-    "homepage": "https://github.com/zuhito/electron-node-red#readme",
+    "homepage": "https://github.com/sammachin/electron-node-red#readme",
     "devDependencies": {
         "electron": "*",
         "electron-builder": "*"
