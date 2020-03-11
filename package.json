@@ -5,7 +5,7 @@
     "author": "zuhito",
     "main": "main.js",
     "scripts": {
-        "start": "electron main.js",
+        "start": "electron .",
         "build": "node node_modules/electron-builder/out/cli/cli.js --platform all --arch all",
         "build:osx": "node node_modules/electron-builder/out/cli/cli.js --mac --x64",
         "build:linux32": "node node_modules/electron-builder/out/cli/cli.js --linux --ia32",
@@ -18,10 +18,12 @@
         "url": "git+https://github.com/zuhito/electron-node-red.git"
     },
     "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "electron-store": "^5.1.1",
+        "express": "*",
         "node-red": "*",
-        "node-red-dashboard": "*",
         "node-red-contrib-nexmo": "*",
-        "express": "*"
+        "node-red-dashboard": "*"
     },
     "keywords": [
         "electron",
@@ -50,7 +52,7 @@
     },
     "homepage": "https://github.com/sammachin/electron-node-red#readme",
     "devDependencies": {
-        "electron": "*",
+        "electron": "^8.1.1",
         "electron-builder": "*"
     }
 }

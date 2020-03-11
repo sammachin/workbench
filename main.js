@@ -8,15 +8,17 @@ const flowfile = 'flows.json';
 const url = "/admin";
 // url for the editor page
 const urledit = "/admin";
-// tcp port to use
-const listenPort = "1880"; // fix it just because
-//const listenPort = parseInt(Math.random()*16383+49152) // or random ephemeral port
+
 
 const os = require('os');
 const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const {Menu, MenuItem} = electron;
+const Store = require('electron-store');
+const fs = require('fs');
+const bcrypt = require('bcryptjs');
+
 
 // this should be placed at top of main.js to handle squirrel setup events quickly
 if (handleSquirrelEvent()) { return; }
@@ -24,31 +26,23 @@ if (handleSquirrelEvent()) { return; }
 var http = require('http');
 var express = require("express");
 var RED = require("node-red");
+// setup settings store
+const store = new Store();
 
 // Create an Express app
 var red_app = express();
 
-// Add a simple route for static content served from 'public'
-//red_app.use("/",express.static("public"));
-
 // Create a server
 var server = http.createServer(red_app);
 
-var userdir;
-if (process.argv[1] && (process.argv[1] === "main.js")) {
-    userdir = __dirname;
-}
-else { // We set the user directory to be in the users home directory...
-    const fs = require('fs');
-    userdir = os.homedir() + '/.node-red';
-    //if (!fs.existsSync(userdir)) {
-    //    fs.mkdirSync(userdir);
-    //}
-    //if (!fs.existsSync(userdir+"/"+flowfile)) {
-    //    fs.writeFileSync(userdir+"/"+flowfile, fs.readFileSync(__dirname+"/"+flowfile));
-    //}
+
+var userdir = app.getPath('userData');
+var nodesdir = userdir + '/nodes';
+if (!fs.existsSync(nodesdir)) {
+    fs.mkdirSync(nodesdir);
 }
 console.log("Setting UserDir to ",userdir);
+console.log("Setting NodesDir to ",nodesdir);
 
 // Create the settings object - see default settings.js file for other options
 var settings = {
@@ -56,10 +50,22 @@ var settings = {
     httpAdminRoot:"/admin",
     httpNodeRoot: "/",
     userDir: userdir,
+    nodesDir: nodesdir,
     flowFile: flowfile,
     functionGlobalContext: { },    // enables global context
-    editorTheme: { projects: { enabled: true } }
+    editorTheme: { projects: { enabled: false } },
+    adminAuth : {
+        type: "credentials",
+        users: [{
+            username: store.get('nodered.username', "admin"), 
+            password: store.get('nodered.password', bcrypt.hashSync("password", 8)),
+            permissions: "*"
+        }]
+}
 };
+
+// tcp port to use
+const listenPort = store.get('nodered.listenPort') || "1880"; 
 
 // Initialise the runtime with a server and settings
 RED.init(server,settings);
@@ -69,6 +75,21 @@ red_app.use(settings.httpAdminRoot,RED.httpAdmin);
 
 // Serve the http nodes UI from /api
 red_app.use(settings.httpNodeRoot,RED.httpNode);
+
+function noderedSettings() {
+    const nrsettingsWindow = new BrowserWindow({
+      webPreferences: {
+            nodeIntegration: true
+      },
+      width: 600,
+      height: 400,
+    })
+    nrsettingsWindow.once('ready-to-show', () => {
+        nrsettingsWindow.show()
+    })
+    nrsettingsWindow.loadFile('nodered-settings.html')
+  }
+  
 
 // Create the Application's main menu
 var template = [{
@@ -80,15 +101,11 @@ var template = [{
     ]}, {
     label: 'Node-RED',
     submenu: [
-        //{ label: 'Dashboard',
-        //accelerator: "Shift+CmdOrCtrl+D",
-        //click() { mainWindow.loadURL("http://localhost:"+listenPort+url); }
-        //},
-        //{ label: 'Editor',
-        //accelerator: "Shift+CmdOrCtrl+E",
-        //click() { mainWindow.loadURL("http://localhost:"+listenPort+urledit); }
-        //},
-        //{ type: 'separator' },
+        { label: 'Settings',
+        click: function(){
+            noderedSettings();
+          }
+        },
         { label: 'Documentation',
         click() { require('electron').shell.openExternal('http://nodered.org/docs') }
         },
@@ -99,40 +116,37 @@ var template = [{
         click() { require('electron').shell.openExternal('https://groups.google.com/forum/#!forum/node-red') }
         }
     ]}, {
-    //label: "Edit",
-    //submenu: [
-    //    { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
-    //    { label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
-    //    { type: "separator" },
-    //    { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
-    //    { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
-    //    { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
-    //    { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
-    //]}, {
+    label: "Edit",
+    submenu: [
+        { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
+        { label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
+        { type: "separator" },
+        { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
+        { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
+        { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
+        { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
+    ]}, {
     label: 'View',
     submenu: [
         { label: 'Reload',
             accelerator: 'CmdOrCtrl+R',
             click(item, focusedWindow) { if (focusedWindow) focusedWindow.reload(); }
         },
-        //{ label: 'Toggle Developer Tools',
-        //    accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-        //    click(item, focusedWindow) { if (focusedWindow) focusedWindow.webContents.toggleDevTools(); }
-        //},
+        { label: 'Toggle Developer Tools',
+            accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
+            click(item, focusedWindow) { if (focusedWindow) focusedWindow.webContents.toggleDevTools(); }
+        },
         { type: 'separator' },
         { role: 'resetzoom' },
         { role: 'zoomin' },
         { role: 'zoomout' },
-        //{ type: 'separator' },
-        //{ role: 'togglefullscreen' },
-        //{ role: 'minimize' }
+        { type: 'separator' },
+        { role: 'togglefullscreen' },
+        { role: 'minimize' }
     ]}
 ];
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
-
 function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
@@ -142,24 +156,21 @@ function createWindow() {
         },
         title: "Node-RED",
         fullscreenable: true,
-        //titleBarStyle: "hidden",
-        width: 1024,
-        height: 768,
+        width: 1200,
+        height: 800,
         icon: __dirname + "/nodered.png"
     });
-
+    Menu.setApplicationMenu(Menu.buildFromTemplate(template));
+    
     var webContents = mainWindow.webContents;
     webContents.on('did-get-response-details', function(event, status, newURL, originalURL, httpResponseCode) {
         if ((httpResponseCode == 404) && (newURL == ("http://localhost:"+listenPort+url))) {
             setTimeout(webContents.reload, 200);
         }
-        Menu.setApplicationMenu(Menu.buildFromTemplate(template));
+        
     });
 
-    // Open the DevTools.
-    //mainWindow.webContents.openDevTools();
-
-    mainWindow.webContents.on("new-window", function(e, url, frameName, disposition, options) {
+     mainWindow.webContents.on("new-window", function(e, url, frameName, disposition, options) {
         // if a child window opens... modify any other options such as width/height, etc
         // in this case make the child overlap the parent exactly...
         var w = mainWindow.getBounds();
