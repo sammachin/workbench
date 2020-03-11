@@ -1,5 +1,5 @@
 {
-    "name": "electron-node-red-workbench",
+    "name": "Workbench",
     "version": "1.0.4",
     "description": "Electron Node-RED with ngrok",
     "author": "zuhito",
@@ -23,7 +23,9 @@
         "express": "*",
         "node-red": "*",
         "node-red-contrib-nexmo": "*",
-        "node-red-dashboard": "*"
+        "node-red-dashboard": "*",
+        "ngrok": "^3.2.7"
+
     },
     "keywords": [
         "electron",
