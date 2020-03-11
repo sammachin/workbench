@@ -24,6 +24,8 @@ const ngrok = require('ngrok');
 
 const isMac = process.platform === 'darwin'
 
+
+
 // this should be placed at top of main.js to handle squirrel setup events quickly
 if (handleSquirrelEvent()) { return; }
 
@@ -40,14 +42,14 @@ var red_app = express();
 // Create a server
 var server = http.createServer(red_app);
 
+const listenPort = store.get('nodered.port') || "1880"; 
+
 
 var userdir = app.getPath('userData');
 var nodesdir = userdir + '/nodes';
 if (!fs.existsSync(nodesdir)) {
     fs.mkdirSync(nodesdir);
 }
-console.log("Setting UserDir to ",userdir);
-console.log("Setting NodesDir to ",nodesdir);
 
 // Create the settings object - see default settings.js file for other options
 var settings = {
@@ -62,15 +64,12 @@ var settings = {
     adminAuth : {
         type: "credentials",
         users: [{
-            username: store.get('nodered-username', "admin"), 
-            password: store.get('nodered-password', bcrypt.hashSync("password", 8)),
+            username: store.get('nodered.username', "admin"), 
+            password: store.get('nodered.password', bcrypt.hashSync("password", 8)),
             permissions: "*"
         }]
 }
 };
-
-// tcp port to use
-const listenPort = store.get('nodered-port') || "1880"; 
 
 // Initialise the runtime with a server and settings
 RED.init(server,settings);
@@ -97,10 +96,20 @@ function openSettings() {
 
   let ngrokConnected = false;
 
+  
+
   function toggleNgrok() {
+    let ngrokOpts = {
+      proto: 'http', 
+      addr: store.get('nodered.port', "1880"),
+      auth: store.get('ngrok.ngrok-auth', ""),
+      subdomain: store.get('ngrok.subdomain', ""),
+      authtoken: store.get('ngrok.authtoken', ""),
+      region: store.get('ngrok.region', "us")
+    }
     if (!ngrokConnected){
       (async function() {
-        const url = await ngrok.connect();
+        const url = await ngrok.connect(ngrokOpts);
         ngrokConnected = true
         ngrokToast(url, ngrokConnected)
         template[4].submenu[0].label = url
@@ -154,11 +163,10 @@ function openSettings() {
   }
   
 
-
 // Create the Application's main menu
 var template = [
     ...(isMac ? [{
-        label: 'Workbench',
+        label: app.name,
         submenu: [
           { role: 'about' },
           { type: 'separator' },
@@ -175,9 +183,7 @@ var template = [
       }] : []),
       {
         label: 'File',
-        submenu: [
-          isMac ? { role: 'close' } : { role: 'quit' }
-        ]
+        submenu: [...(isMac ? [{ role: 'close' }] : [{ label: 'Settings', click: openSettings }, { role: 'quit' } ])]
       },
     { label: "Edit", submenu: [
         { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
@@ -232,6 +238,9 @@ var template = [
         },
         { label: 'Flows and Nodes',
         click() { require('electron').shell.openExternal('http://flows.nodered.org') }
+        },
+        { label: "Log Settings Store",
+        click() { console.log(store.get()) }
         }
     ]}, 
 ];

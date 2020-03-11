@@ -21,14 +21,14 @@ form.addEventListener("submit", (event) => {
 })
 
 function saveSettings(){
-  store.set('nodered-port', document.getElementById('nodered-port').value);
-  store.set('nodered-username', document.getElementById('nodered-username').value);
+  store.set('nodered.port', document.getElementById('nodered-port').value);
+  store.set('nodered.username', document.getElementById('nodered-username').value);
   if (document.getElementById('nodered-password').value != null) {
-      store.set('nodered-password', bcrypt.hashSync(document.getElementById('nodered-password').value, 8))
+      store.set('nodered.password', bcrypt.hashSync(document.getElementById('nodered-password').value, 8))
   }
 }
 
 function getSettings(){
-  document.getElementById('nodered-port').value = store.get('nodered-port')
-  document.getElementById('nodered-username').value = store.get('nodered-username')
+  document.getElementById('nodered.port').value = store.get('nodered-port')
+  document.getElementById('nodered.username').value = store.get('nodered-username')
 }
