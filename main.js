@@ -85,13 +85,14 @@ function openSettings() {
       webPreferences: {
             nodeIntegration: true
       },
-      width: 600,
+      width: 1000,
       height: 800,
     })
     settingsWindow.once('ready-to-show', () => {
         settingsWindow.show()
     })
     settingsWindow.loadFile('settings.html')
+    // settingsWindow.webContents.openDevTools()
   }
 
   let ngrokConnected = false;

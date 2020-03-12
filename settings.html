@@ -2,37 +2,39 @@
 <html>
   <head>
     <title>Settings</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./settings.css">
   </head>
   <body>
 
+  <form id="nodered-settings">
     <h2> Node-RED</h2>
-    <form id="nodered-settings">
-    <div class="form-row">
+    <div class="form-group">
         <label for="nodered-port">Port</label>
-        <input type="text" id="nodered-port" placeholder="1880" >
+        <input class="form-control" type="text" id="nodered-port" placeholder="1880" >
     </div>
 
-    <divclass="form-row">
+    <div class="form-group">
         <label for="nodered-username">Username</label>
-        <input type="text" id="nodered-username" placeholder="username">
+        <input class="form-control" type="text" id="nodered-username" placeholder="username">
     </div>
-    <div class="form-row">
+    <div class="form-group">
         <label for="nodered-password">Password</label>
-        <input type="password" id="nodered-password" placeholder="password">
+        <input class="form-control" type="password" id="nodered-password" placeholder="password">
     </div>
-    <button onclick="saveSettings()">Save</button>
+    <button class="btn btn-primary" onclick="saveSettings()">Save</button>
   </form>
 
-   <h2>ngrok</h2>
     <form id="ngrok-settings">
-      <div class="form-row">
+      <h2>ngrok</h2>
+      <div class="form-group">
         <label for="ngrok-authtoken">authtoken</label>
-        <input name="authtoken" type="text" id="ngrok-authtoken">
+        <input class="form-control" name="authtoken" type="text" id="ngrok-authtoken">
       </div>
   
-      <div class="form-row">
+      <div class="form-group">
         <label for="ngrok-region">Region</label>
-        <select name="region" type="text" id="ngrok-region" style="width:70%;">
+        <select class="form-control" name="region" type="text" id="ngrok-region" style="width:70%;">
           <option value="us">US</option>
           <option value="eu">Europe</option>
           <option value="ap">Asia/Pacific</option>
@@ -43,17 +45,17 @@
         </select>
       </div>
       
-      <div id="subdomain" class="form-row">
+      <div id="subdomain" class="form-group">
         <label for="ngrok-subdomain">Subdomain</label>
-        <input name="subdomain" type="text" id="ngrok-subdomain" placeholder="Name">
+        <input class="form-control" name="subdomain" type="text" id="ngrok-subdomain" placeholder="Name">
       </div>
   
-      <div id="auth" class="form-row">
+      <div id="auth" class="form-group">
         <label for="ngrok-auth">Auth</label>
-        <input name="auth" type="text" id="ngrok-auth" placeholder="username:password">
+        <input class="form-control" name="auth" type="text" id="ngrok-auth" placeholder="username:password">
       </div>
   
-      <button>Save</button>
+      <button class="btn btn-primary">Save</button>
     </form>
 
     <script src="./settings.js"></script>
