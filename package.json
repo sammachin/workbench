@@ -25,7 +25,6 @@
         "node-red-contrib-nexmo": "*",
         "node-red-dashboard": "*",
         "ngrok": "^3.2.7"
-
     },
     "keywords": [
         "electron",
