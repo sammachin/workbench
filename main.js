@@ -106,11 +106,13 @@ function openSettings() {
       auth: store.get('ngrok.ngrok-auth', ""),
       subdomain: store.get('ngrok.subdomain', ""),
       authtoken: store.get('ngrok.authtoken', ""),
-      region: store.get('ngrok.region', "us")
+      region: store.get('ngrok.region', "us"),
+      binPath : path => path.replace('app.asar', 'app.asar.unpacked')
     }
     if (!ngrokConnected){
       (async function() {
         const url = await ngrok.connect(ngrokOpts);
+        process.env.EXTERNAL_HOSTNAME = new URL(url).hostname;
         ngrokConnected = true
         ngrokToast(url, ngrokConnected)
         template[4].submenu[0].label = url
@@ -121,18 +123,21 @@ function openSettings() {
         const menu = Menu.buildFromTemplate(template)
         Menu.setApplicationMenu(menu)
       })();
+    } else{
+      (async function() {
+        const url = await ngrok.disconnect();
+        ngrokConnected = false
+        process.env.EXTERNAL_HOSTNAME = "";
+        ngrokToast(null, ngrokConnected)
+        template[4].submenu[0].label = "Not Connected"
+        template[4].submenu[0].enabled = false
+        template[4].submenu[4].enabled = false
+        template[4].submenu[2].label = "Connect"
+        const menu = Menu.buildFromTemplate(template)
+        Menu.setApplicationMenu(menu)
+      })();
     }
-    (async function() {
-      const url = await ngrok.disconnect();
-      ngrokConnected = false
-      ngrokToast(null, ngrokConnected)
-      template[4].submenu[0].label = "Not Connected"
-      template[4].submenu[0].enabled = false
-      template[4].submenu[4].enabled = false
-      template[4].submenu[2].label = "Connect"
-      const menu = Menu.buildFromTemplate(template)
-      Menu.setApplicationMenu(menu)
-    })();
+    
   }
   
   function inspectNgrok(){
