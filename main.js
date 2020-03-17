@@ -92,7 +92,7 @@ function openSettings() {
         settingsWindow.show()
     })
     settingsWindow.loadFile('settings.html')
-    // settingsWindow.webContents.openDevTools()
+    settingsWindow.webContents.openDevTools()
   }
 
   let ngrokConnected = false;

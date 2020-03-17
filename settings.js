@@ -3,7 +3,8 @@ const store = new Store();
 const bcrypt = require('bcryptjs');
 
 
-let form = document.getElementById("ngrok-settings")
+let form = document.getElementById("settings")
+let savedSettings = store.get("settings")
 
 formToJson = (elements) => {
   let json = {};
@@ -12,23 +13,31 @@ formToJson = (elements) => {
   });
   return json;
 }
+
+jsonToForm = (settings, form) => {
+  Object.keys(settings).forEach(settingName => {
+    form.elements[settingName].value = settings[settingName]
+  })
+  form.elements["nodered-password"].value = ""
+}
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
+  let settings = formToJson([...form.elements]);
+  
+  if (settings["nodered-password"] != ""){
+    settings["nodered-password"] = bcrypt.hashSync(settings["nodered-password"], 8)
+  } else {
+    settings["nodered-password"] = savedSettings["nodered-password"]
+  }
 
   store.set({
-    ngrok: formToJson([...form.elements])
+    "settings": settings
   })
 })
 
-function saveSettings(){
-  store.set('nodered.port', document.getElementById('nodered-port').value);
-  store.set('nodered.username', document.getElementById('nodered-username').value);
-  if (document.getElementById('nodered-password').value != null) {
-      store.set('nodered.password', bcrypt.hashSync(document.getElementById('nodered-password').value, 8))
+window.addEventListener('load', (event) => {
+  if (savedSettings) {
+    jsonToForm(savedSettings, form)
   }
-}
-
-function getSettings(){
-  document.getElementById('nodered.port').value = store.get('nodered-port')
-  document.getElementById('nodered.username').value = store.get('nodered-username')
-}
+});
