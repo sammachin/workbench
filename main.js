@@ -42,7 +42,7 @@ var red_app = express();
 // Create a server
 var server = http.createServer(red_app);
 
-const listenPort = store.get('nodered.port') || "1880"; 
+const listenPort = store.get("settings.nodered-port") || "1880"; 
 
 
 var userdir = app.getPath('userData');
@@ -50,6 +50,7 @@ var nodesdir = userdir + '/nodes';
 if (!fs.existsSync(nodesdir)) {
     fs.mkdirSync(nodesdir);
 }
+console.log("shiiiiiiiiiiiiit", store.get("settings"));
 
 // Create the settings object - see default settings.js file for other options
 var settings = {
@@ -64,8 +65,8 @@ var settings = {
     adminAuth : {
         type: "credentials",
         users: [{
-            username: store.get('nodered.username', "admin"), 
-            password: store.get('nodered.password', bcrypt.hashSync("password", 8)),
+            username: store.get("settings.nodered-username", "admin"), 
+            password: store.get("settings.nodered-password", bcrypt.hashSync("password", 8)),
             permissions: "*"
         }]
 }
@@ -101,11 +102,11 @@ function openSettings() {
   function toggleNgrok() {
     let ngrokOpts = {
       proto: 'http', 
-      addr: store.get('nodered.port', "1880"),
-      auth: store.get('ngrok.ngrok-auth', ""),
-      subdomain: store.get('ngrok.subdomain', ""),
-      authtoken: store.get('ngrok.authtoken', ""),
-      region: store.get('ngrok.region', "us"),
+      addr: store.get("settings.nodered-port", "1880"),
+      auth: store.get("settings.ngrok-auth", ""),
+      subdomain: store.get("settings.ngrok-subdomain", ""),
+      authtoken: store.get("settings.ngrok-authtoken", ""),
+      region: store.get("settings.ngrok-region", "us"),
       binPath : path => path.replace('app.asar', 'app.asar.unpacked')
     }
     if (!ngrokConnected){
