@@ -50,7 +50,6 @@ var nodesdir = userdir + '/nodes';
 if (!fs.existsSync(nodesdir)) {
     fs.mkdirSync(nodesdir);
 }
-console.log("shiiiiiiiiiiiiit", store.get("settings"));
 
 // Create the settings object - see default settings.js file for other options
 var settings = {
