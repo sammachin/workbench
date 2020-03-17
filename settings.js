@@ -7,11 +7,11 @@ let form = document.getElementById("settings")
 let savedSettings = store.get("settings")
 
 formToJson = (elements) => {
-  let json = {};
+  let json = {}
   elements.forEach(element => {
     if (element.name !== "") json[element.name] = element.value
-  });
-  return json;
+  })
+  return json
 }
 
 jsonToForm = (settings, form) => {
@@ -23,7 +23,7 @@ jsonToForm = (settings, form) => {
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  let settings = formToJson([...form.elements]);
+  let settings = formToJson([...form.elements])
   
   if (settings["nodered-password"] != ""){
     settings["nodered-password"] = bcrypt.hashSync(settings["nodered-password"], 8)
@@ -34,6 +34,8 @@ form.addEventListener("submit", (event) => {
   store.set({
     "settings": settings
   })
+
+  close()
 })
 
 window.addEventListener('load', (event) => {

@@ -1,36 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Settings</title>
-    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./settings.css">
-  </head>
-  <body>
 
-    <form id="settings">
-      <h2> Node-RED</h2>
-      <div class="form-group">
-          <label for="nodered-port">Port</label>
-          <input class="form-control" type="text" name="nodered-port" id="nodered-port" placeholder="1880" >
+<head>
+  <title>Settings</title>
+  <link rel="stylesheet" href="./node_modules/@vonagevolta/volta2/dist/css/volta.css">
+  <link rel="stylesheet" href="./settings.css">
+</head>
+
+<body>
+
+  <form id="settings">
+    <h2> Node-RED</h2>
+    <div class="Vlt-form__element Vlt-form__element--big">
+      <div class="Vlt-input">
+        <input type="text" name="nodered-port" id="nodered-port" placeholder="1880">
+        <label for="nodered-port">Port</label>
       </div>
-  
-      <div class="form-group">
-          <label for="nodered-username">Username</label>
-          <input class="form-control" type="text" name="nodered-username" id="nodered-username" placeholder="username">
+    </div>
+
+    <div class="Vlt-form__element Vlt-form__element--big">
+      <div class="Vlt-input">
+        <input type="text" name="nodered-username" id="nodered-username" placeholder="username">
+        <label for="nodered-username">Username</label>
       </div>
-      <div class="form-group">
-          <label for="nodered-password">Password</label>
-          <input class="form-control" type="password" name="nodered-password" id="nodered-password" placeholder="password">
+    </div>
+    <div class="Vlt-form__element Vlt-form__element--big">
+      <div class="Vlt-input">
+        <input type="password" name="nodered-password" id="nodered-password" placeholder="password">
+        <label for="nodered-password">Password</label>
       </div>
-      <h2>ngrok</h2>
-      <div class="form-group">
+    </div>
+    <h2 id="ngrok-title">ngrok</h2>
+    <div class="Vlt-form__element Vlt-form__element--big">
+      <div class="Vlt-input">
+        <input name="ngrok-authtoken" type="text" id="ngrok-authtoken">
         <label for="ngrok-authtoken">authtoken</label>
-        <input class="form-control" name="ngrok-authtoken" type="text" id="ngrok-authtoken">
       </div>
-  
-      <div class="form-group">
-        <label for="ngrok-region">Region</label>
-        <select class="form-control" name="ngrok-region" type="text" id="ngrok-region" style="width:70%;">
+    </div>
+
+    <div class="Vlt-form__element Vlt-form__element--big">
+      <div class="Vlt-select">
+        <select name="ngrok-region" type="text" id="ngrok-region">
           <option value="us">US</option>
           <option value="eu">Europe</option>
           <option value="ap">Asia/Pacific</option>
@@ -39,21 +49,30 @@
           <option value="jp">Japan</option>
           <option value="in">India</option>
         </select>
+        <label for="ngrok-region">Region</label>
       </div>
-      
-      <div id="subdomain" class="form-group">
-        <label for="ngrok-subdomain">Subdomain</label>
-        <input class="form-control" name="ngrok-subdomain" type="text" id="ngrok-subdomain" placeholder="Name">
-      </div>
-  
-      <div id="auth" class="form-group">
-        <label for="ngrok-auth">Auth</label>
-        <input class="form-control" name="ngrok-auth" type="text" id="ngrok-auth" placeholder="username:password">
-      </div>
-  
-      <button class="btn btn-primary">Save</button>
-    </form>
+    </div>
 
-    <script src="./settings.js"></script>
-  </body>
+    <div class="Vlt-form__element Vlt-form__element--big">
+      <div class="Vlt-input">
+        <input name="ngrok-subdomain" type="text" id="ngrok-subdomain" placeholder="Name">
+        <label for="ngrok-subdomain">Subdomain</label>
+      </div>
+    </div>
+
+    <div class="Vlt-form__element Vlt-form__element--big">
+      <div class="Vlt-input">
+        <input name="ngrok-auth" type="text" id="ngrok-auth" placeholder="username:password">
+        <label for="ngrok-auth">Auth</label>
+      </div>
+    </div>
+    <div class="Vlt-right">
+      <button class="Vlt-btn Vlt-btn--primary">Save</button>
+    </div>
+    </div>
+  </form>
+
+  <script src="./settings.js"></script>
+</body>
+
 </html>

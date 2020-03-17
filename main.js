@@ -85,8 +85,8 @@ function openSettings() {
       webPreferences: {
             nodeIntegration: true
       },
-      width: 1000,
-      height: 800,
+      width: 475,
+      height: 675,
     })
     settingsWindow.once('ready-to-show', () => {
         settingsWindow.show()
@@ -97,7 +97,6 @@ function openSettings() {
 
   let ngrokConnected = false;
 
-  
 
   function toggleNgrok() {
     let ngrokOpts = {

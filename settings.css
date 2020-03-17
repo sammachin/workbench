@@ -2,3 +2,6 @@ form {
     padding: 3rem;
 }
 
+#ngrok-title {
+    padding-top: 16px;
+}
