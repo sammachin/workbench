@@ -32,3 +32,8 @@ function getSettings(){
   document.getElementById('nodered.port').value = store.get('nodered-port')
   document.getElementById('nodered.username').value = store.get('nodered-username')
 }
+
+function restartApp(){
+  console.log('restarting')
+  app.relaunch()
+}
