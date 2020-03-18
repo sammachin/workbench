@@ -36,6 +36,14 @@ var RED = require("node-red");
 // setup settings store
 const store = new Store();
 
+store.watch = true;
+const unsubscribe = store.onDidChange('nodered', restartApp);
+
+function restartApp(){
+  console.log('restarting')
+  app.relaunch()
+}
+
 // Create an Express app
 var red_app = express();
 
