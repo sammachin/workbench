@@ -14,7 +14,7 @@ const os = require('os');
 const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
-const {Menu, MenuItem, clipboard, Notification} = electron;
+const {Menu, MenuItem, clipboard, Notification, ipcMain} = electron;
 const Store = require('electron-store');
 const fs = require('fs');
 const bcrypt = require('bcryptjs');
@@ -36,13 +36,12 @@ var RED = require("node-red");
 // setup settings store
 const store = new Store();
 
-store.watch = true;
-const unsubscribe = store.onDidChange('nodered', restartApp);
-
-function restartApp(){
-  console.log('restarting')
+ipcMain.on('restart-request', (event, arg) => {
+  console.log(arg)
   app.relaunch()
-}
+  app.exit()
+})
+
 
 // Create an Express app
 var red_app = express();
