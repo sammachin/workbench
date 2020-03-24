@@ -25,7 +25,9 @@
         "ngrok": "^3.2.7",
         "node-red": "*",
         "node-red-contrib-nexmo": "*",
-        "node-red-dashboard": "*"
+        "node-red-dashboard": "*",
+        "request-promise": "^4.2.5",
+        "workbench-nodered-nodes": "file:./workbench-nodered-nodes"
     },
     "keywords": [
         "electron",

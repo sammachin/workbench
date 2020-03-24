@@ -1,0 +1,18 @@
+{
+  "name": "workbench-nodered-nodes",
+  "version": "0.0.1",
+  "description": "Nodes to support running within the workbench applicaiton",
+  "main": "sample.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [ "electron"
+  ],
+  "author": "",
+  "license": "MIT",
+  "node-red": {
+    "nodes": {
+        "sample": "external_url.js"
+    }
+}
+}

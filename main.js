@@ -19,11 +19,12 @@ const Store = require('electron-store');
 const fs = require('fs');
 const bcrypt = require('bcryptjs');
 const ngrok = require('ngrok');
-
-
+const rp = require('request-promise')
+const crypto = require('crypto')
 
 const isMac = process.platform === 'darwin'
 
+const electron_token = crypto.randomBytes(48).toString('base64').replace(/\//g,'_').replace(/\+/g,'-');
 
 
 // this should be placed at top of main.js to handle squirrel setup events quickly
@@ -74,7 +75,13 @@ var settings = {
             username: store.get("settings.nodered-username", "admin"), 
             password: store.get("settings.nodered-password", bcrypt.hashSync("password", 8)),
             permissions: "*"
-        }]
+        },
+        {
+          username: 'electron', 
+          password: bcrypt.hashSync(electron_token, 8),
+          permissions: "electron.read"
+      },
+      ]
 }
 };
 
@@ -105,6 +112,7 @@ function openSettings() {
   let ngrokConnected = false;
 
 
+
   function toggleNgrok() {
     let ngrokOpts = {
       proto: 'http', 
@@ -121,6 +129,7 @@ function openSettings() {
         process.env.EXTERNAL_HOSTNAME = new URL(url).hostname;
         ngrokConnected = true
         ngrokToast(url, ngrokConnected)
+        sendURL(url)
         template[4].submenu[0].label = url
         template[4].submenu[0].click = function(){clipboard.writeText(url, 'selection')}
         template[4].submenu[0].enabled = true
@@ -135,6 +144,7 @@ function openSettings() {
         ngrokConnected = false
         process.env.EXTERNAL_HOSTNAME = "";
         ngrokToast(null, ngrokConnected)
+        sendURL(null)
         template[4].submenu[0].label = "Not Connected"
         template[4].submenu[0].enabled = false
         template[4].submenu[4].enabled = false
@@ -174,6 +184,37 @@ function openSettings() {
     
   }
   
+function sendURL(external_url){
+  var token_request = {
+    method: 'POST',
+    uri: `http://localhost:${listenPort}/admin/auth/token`,
+    body: {
+        client_id: 'node-red-admin',
+        grant_type: "password",
+        scope: "electron.read",
+        username: "electron",
+        password: electron_token
+    },
+    json : true
+  }
+  rp(token_request)
+    .then(function (token) {
+      return rp({
+          method: 'POST',
+          uri: `http://localhost:${listenPort}/admin/electron/external_url`,
+          headers: {'Authorization': 'Bearer '+token.access_token},
+          body: {url: external_url},
+          json : true
+      })
+      .then(function (resp) { return 'ok'} )
+    })
+    .catch(function (err) {
+      console.log(err)
+    });
+  }
+
+
+
 
 // Create the Application's main menu
 var template = [
@@ -239,7 +280,8 @@ var template = [
             click: function(){
               inspectNgrok ();
             }
-          }
+          },
+          
           
         ]
     },
@@ -253,6 +295,13 @@ var template = [
         },
         { label: "Log Settings Store",
         click() { console.log(store.get()) }
+        },
+        {
+          label: 'Test',
+          enabled: true,
+          click: function(){
+            sendURL(null);
+          }
         }
     ]}, 
 ];
@@ -329,6 +378,8 @@ RED.start().then(function() {
         mainWindow.loadURL("http://127.0.0.1:"+listenPort+url);
     });
 });
+
+
 
 ///////////////////////////////////////////////////////
 // All this Squirrel stuff is for the Windows installer

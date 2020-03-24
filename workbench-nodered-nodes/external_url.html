@@ -1,0 +1,28 @@
+<script type="text/javascript">
+    RED.nodes.registerType('ExternalURL',{
+        category: 'common',      
+        color: '#7878C8',
+        icon: "white-globe.png",
+        outputs:1,             
+        defaults: {             
+            name: {} 
+        },
+        label: function() {     // sets the default label contents
+            return this.name || "External URL";
+        }
+    });
+</script>
+
+
+<script type="text/html" data-template-name="ExternalURL">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+ </script>
+ 
+ 
+ <script type="text/html" data-help-name="ExternalURL">
+    <p>This node emits the external URL when it changes from ngrok</p>
+ </script>
