@@ -123,6 +123,8 @@ function openSettings() {
       region: store.get("settings.ngrok-region", "us"),
       binPath : path => path.replace('app.asar', 'app.asar.unpacked')
     }
+    var ngrokrow
+    isMac ? ngrokrow = 4 : ngrokrow = 3
     if (!ngrokConnected){
       (async function() {
         const url = await ngrok.connect(ngrokOpts);
@@ -130,11 +132,11 @@ function openSettings() {
         ngrokConnected = true
         ngrokToast(url, ngrokConnected)
         sendURL(url)
-        template[4].submenu[0].label = url
-        template[4].submenu[0].click = function(){clipboard.writeText(url, 'selection')}
-        template[4].submenu[0].enabled = true
-        template[4].submenu[4].enabled = true
-        template[4].submenu[2].label = "Disconnect"
+        template[ngrokrow].submenu[0].label = url
+        template[ngrokrow].submenu[0].click = function(){clipboard.writeText(url, 'selection')}
+        template[ngrokrow].submenu[0].enabled = true
+        template[ngrokrow].submenu[4].enabled = true
+        template[ngrokrow].submenu[2].label = "Disconnect"
         const menu = Menu.buildFromTemplate(template)
         Menu.setApplicationMenu(menu)
       })();
@@ -145,10 +147,10 @@ function openSettings() {
         process.env.EXTERNAL_HOSTNAME = "";
         ngrokToast(null, ngrokConnected)
         sendURL(null)
-        template[4].submenu[0].label = "Not Connected"
-        template[4].submenu[0].enabled = false
-        template[4].submenu[4].enabled = false
-        template[4].submenu[2].label = "Connect"
+        template[ngrokrow].submenu[0].label = "Not Connected"
+        template[ngrokrow].submenu[0].enabled = false
+        template[ngrokrow].submenu[4].enabled = false
+        template[ngrokrow].submenu[2].label = "Connect"
         const menu = Menu.buildFromTemplate(template)
         Menu.setApplicationMenu(menu)
       })();
@@ -292,16 +294,6 @@ var template = [
         },
         { label: 'Flows and Nodes',
         click() { require('electron').shell.openExternal('http://flows.nodered.org') }
-        },
-        { label: "Log Settings Store",
-        click() { console.log(store.get()) }
-        },
-        {
-          label: 'Test',
-          enabled: true,
-          click: function(){
-            sendURL(null);
-          }
         }
     ]}, 
 ];
@@ -310,7 +302,7 @@ let mainWindow;
 function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
-        autoHideMenuBar: true,
+        autoHideMenuBar: false,
         webPreferences: {
             nodeIntegration: false
         },
@@ -358,9 +350,9 @@ app.on('ready', createWindow);
 app.on('window-all-closed', function () {
     // On OS X it is common for applications and their menu bar
     // to stay active until the user quits explicitly with Cmd + Q
-    //if (process.platform !== 'darwin') {
-    //    app.quit();
-    //}
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
 });
 
 app.on('activate', function() {
