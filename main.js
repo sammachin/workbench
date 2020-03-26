@@ -14,7 +14,7 @@ const os = require('os');
 const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
-const {Menu, MenuItem, clipboard, Notification, ipcMain} = electron;
+const {Menu, MenuItem, clipboard, Notification, ipcMain, dialog} = electron;
 const Store = require('electron-store');
 const fs = require('fs');
 const bcrypt = require('bcryptjs');
@@ -50,7 +50,7 @@ var red_app = express();
 // Create a server
 var server = http.createServer(red_app);
 
-const listenPort = store.get("settings.nodered-port") || "1880"; 
+const listenPort = store.get("settings.nodered-port") || 1880; 
 
 
 var userdir = app.getPath('userData');
@@ -116,7 +116,7 @@ function openSettings() {
   function toggleNgrok() {
     let ngrokOpts = {
       proto: 'http', 
-      addr: store.get("settings.nodered-port", "1880"),
+      addr: listenPort,
       auth: store.get("settings.ngrok-auth", ""),
       subdomain: store.get("settings.ngrok-subdomain", ""),
       authtoken: store.get("settings.ngrok-authtoken", ""),
@@ -294,12 +294,19 @@ var template = [
         },
         { label: 'Flows and Nodes',
         click() { require('electron').shell.openExternal('http://flows.nodered.org') }
-        }
+        },
+        {
+          label: 'Reset Settings',
+          click: function(){
+            store.clear()
+          }
+        },
     ]}, 
 ];
 
 let mainWindow;
 function createWindow() {
+    
     // Create the browser window.
     mainWindow = new BrowserWindow({
         autoHideMenuBar: false,
@@ -314,6 +321,17 @@ function createWindow() {
     });
     Menu.setApplicationMenu(Menu.buildFromTemplate(template));
     
+
+
+    if (store.has("settings.nodered-username") || store.has("settings.nodered-username")){
+      var credsSet = true
+    } else {
+      dialog.showMessageBox(mainWindow, {
+        type : "warning",
+        message : "You are using the default credentials of admin/password. You should set your own now from the settings menu"
+      })  
+    }
+
     var webContents = mainWindow.webContents;
     webContents.on('did-get-response-details', function(event, status, newURL, originalURL, httpResponseCode) {
         if ((httpResponseCode == 404) && (newURL == ("http://localhost:"+listenPort+url))) {

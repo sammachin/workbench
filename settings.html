@@ -11,12 +11,7 @@
 
   <form id="settings">
     <h2> Node-RED</h2>
-    <div class="Vlt-form__element Vlt-form__element--big">
-      <div class="Vlt-input">
-        <input type="text" name="nodered-port" id="nodered-port" placeholder="1880">
-        <label for="nodered-port">Port</label>
-      </div>
-    </div>
+    
 
     <div class="Vlt-form__element Vlt-form__element--big">
       <div class="Vlt-input">
@@ -30,11 +25,16 @@
         <label for="nodered-password">Password</label>
       </div>
     </div>
+    <div class="Vlt-form__element Vlt-form__element--big">
+      <div class="Vlt-input">
+        <input type="text" name="nodered-port" id="nodered-port" placeholder="1880">
+        <label for="nodered-port">Port</label>
+      </div>
+    </div>
     <h2 id="ngrok-title">ngrok</h2>
     <div class="Vlt-form__element Vlt-form__element--big">
       <div class="Vlt-input">
-        <input name="ngrok-authtoken" type="text" id="ngrok-authtoken">
-
+        <input name="ngrok-authtoken" type="text" id="ngrok-authtoken", placeholder="123abc456def">
         <label for="ngrok-authtoken">authtoken</label>
       </div>
     </div>

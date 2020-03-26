@@ -6,6 +6,7 @@ const { ipcRenderer } = require('electron')
 
 let form = document.getElementById("settings")
 let savedSettings = store.get("settings")
+console.log(savedSettings)
 
 formToJson = (elements) => {
   let json = {}
@@ -24,6 +25,9 @@ jsonToForm = (settings, form) => {
 
 hasNRChanged = (settings) => {
   var changed = false
+  if (savedSettings == null && settings != null){
+    changed = true
+  }
   for (k in savedSettings) {
       if (k.match(/nodered-.*/g)) {
           if (savedSettings[k] != settings[k]){
@@ -38,7 +42,7 @@ hasNRChanged = (settings) => {
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   let settings = formToJson([...form.elements])
-  
+  console.log(settings)
   if (settings["nodered-password"] != ""){
     settings["nodered-password"] = bcrypt.hashSync(settings["nodered-password"], 8)
   } else {
