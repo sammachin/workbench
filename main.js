@@ -100,13 +100,12 @@ function openSettings() {
             nodeIntegration: true
       },
       width: 475,
-      height: 675,
+      height: 700,
     })
     settingsWindow.once('ready-to-show', () => {
         settingsWindow.show()
     })
     settingsWindow.loadFile('settings.html')
-    // settingsWindow.webContents.openDevTools()
   }
 
   let ngrokConnected = false;
@@ -290,13 +289,16 @@ var template = [
     { label: 'Help', submenu: [
         
         { label: 'Node-RED Documentation',
-        click() { require('electron').shell.openExternal('http://nodered.org/docs') }
+        click() { require('electron').shell.openExternal('https://nodered.org/docs') }
         },
         { label: 'Flows and Nodes',
-        click() { require('electron').shell.openExternal('http://flows.nodered.org') }
+        click() { require('electron').shell.openExternal('https://flows.nodered.org') }
+        },
+        { label: 'ngrok',
+        click() { require('electron').shell.openExternal('https://ngrok.com') }
         },
         {
-          label: 'Reset Settings',
+          label: '(debug) Reset Settings',
           click: function(){
             store.clear()
           }
