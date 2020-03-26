@@ -100,7 +100,7 @@ function openSettings() {
             nodeIntegration: true
       },
       width: 475,
-      height: 700,
+      height: 800,
     })
     settingsWindow.once('ready-to-show', () => {
         settingsWindow.show()
