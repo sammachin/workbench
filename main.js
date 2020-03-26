@@ -131,7 +131,7 @@ function openSettings() {
         ngrokConnected = true
         ngrokToast(url, ngrokConnected)
         sendURL(url)
-        template[ngrokrow].submenu[0].label = url
+        template[ngrokrow].submenu[0].label = 'Copy "'+url+'"'
         template[ngrokrow].submenu[0].click = function(){clipboard.writeText(url, 'selection')}
         template[ngrokrow].submenu[0].enabled = true
         template[ngrokrow].submenu[4].enabled = true
@@ -330,7 +330,8 @@ function createWindow() {
     } else {
       dialog.showMessageBox(mainWindow, {
         type : "warning",
-        message : "You are using the default credentials of admin/password. You should set your own now from the settings menu"
+        message : "You are using the default credentials of admin/password. You should set your own now from the settings menu",
+        buttons: ['Dismiss']
       })  
     }
 
