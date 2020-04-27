@@ -128,6 +128,11 @@ function _local(command, args, options, emit) {
   let events = RED.runtime._.events
   var invocationId = _generateId();
 
+  if (options) {
+    options.detached = false;
+    options.silent = true;
+  }
+
   emit && events.emit("event-log", {
     ts: Date.now(),
     id: invocationId,
@@ -140,7 +145,7 @@ function _local(command, args, options, emit) {
   return new Promise((resolve, reject) => {
     let stdout = "";
     let stderr = "";
-    const child = child_process.execFile(command, args, options);
+    const child = child_process.fork(command, args, options);
     child.stdout.on('data', (data) => {
       const str = "" + data;
       stdout += str;
