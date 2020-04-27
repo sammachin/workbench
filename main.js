@@ -85,6 +85,8 @@ var settings = {
 }
 };
 
+RED.runtime._.nodes.paletteEditorEnabled = () => { return true }
+
 // Initialise the runtime with a server and settings
 RED.init(server,settings);
 
