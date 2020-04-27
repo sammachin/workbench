@@ -50,7 +50,7 @@ var red_app = express();
 // Create a server
 var server = http.createServer(red_app);
 
-const listenPort = store.get("settings.nodered-port") || 1880; 
+const listenPort = store.get("settings.nodered-port") || 1880;
 
 
 var userdir = app.getPath('userData');
@@ -72,12 +72,12 @@ var settings = {
     adminAuth : {
         type: "credentials",
         users: [{
-            username: store.get("settings.nodered-username", "admin"), 
+            username: store.get("settings.nodered-username", "admin"),
             password: store.get("settings.nodered-password", bcrypt.hashSync("password", 8)),
             permissions: "*"
         },
         {
-          username: 'electron', 
+          username: 'electron',
           password: bcrypt.hashSync(electron_token, 8),
           permissions: "electron.read"
       },
@@ -88,6 +88,15 @@ var settings = {
 // Initialise the runtime with a server and settings
 RED.init(server,settings);
 
+let _run = RED.runtime._.exec.run;
+RED.runtime._.exec.run = function(command,args,options,emit) {
+        if (command != "npm") {
+          return _run(command,args,options,emit)
+        } else {
+          const path = require('path')
+          return _run(path.join(__dirname, "node_modules", "npm", "bin", "npm-cli.js"),args,options,emit)
+        }
+    }
 // Serve the editor UI from /red
 red_app.use(settings.httpAdminRoot,RED.httpAdmin);
 
@@ -114,7 +123,7 @@ function openSettings() {
 
   function toggleNgrok() {
     let ngrokOpts = {
-      proto: 'http', 
+      proto: 'http',
       addr: listenPort,
       auth: store.get("settings.ngrok-auth", ""),
       subdomain: store.get("settings.ngrok-subdomain", ""),
@@ -154,9 +163,9 @@ function openSettings() {
         Menu.setApplicationMenu(menu)
       })();
     }
-    
+
   }
-  
+
   function inspectNgrok(){
     let ngrokWin = new BrowserWindow({ width: 1024, height: 768 })
     ngrokWin.on('closed', () => {
@@ -164,8 +173,8 @@ function openSettings() {
     })
     ngrokWin.loadURL('http://127.0.0.1:4040')
   }
-  
-  
+
+
   function ngrokToast(url, connected){
     if (connected){
       const options = {
@@ -182,9 +191,9 @@ function openSettings() {
       let notification = new Notification(options)
       notification.show()
     }
-    
+
   }
-  
+
 function sendURL(external_url){
   var token_request = {
     method: 'POST',
@@ -247,7 +256,7 @@ var template = [
         { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
         { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
         { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
-    ]}, 
+    ]},
     { label: 'View', submenu: [
         { label: 'Reload',
             accelerator: 'CmdOrCtrl+R',
@@ -282,12 +291,12 @@ var template = [
               inspectNgrok ();
             }
           },
-          
-          
+
+
         ]
     },
     { label: 'Help', submenu: [
-        
+
         { label: 'Node-RED Documentation',
         click() { require('electron').shell.openExternal('https://nodered.org/docs') }
         },
@@ -303,12 +312,12 @@ var template = [
             store.clear()
           }
         },
-    ]}, 
+    ]},
 ];
 
 let mainWindow;
 function createWindow() {
-    
+
     // Create the browser window.
     mainWindow = new BrowserWindow({
         autoHideMenuBar: false,
@@ -322,7 +331,7 @@ function createWindow() {
         icon: __dirname + "/nodered.png"
     });
     Menu.setApplicationMenu(Menu.buildFromTemplate(template));
-    
+
 
 
     if (store.has("settings.nodered-username") || store.has("settings.nodered-username")){
@@ -332,7 +341,7 @@ function createWindow() {
         type : "warning",
         message : "You are using the default credentials of admin/password. You should set your own now from the settings menu",
         buttons: ['Dismiss']
-      })  
+      })
     }
 
     var webContents = mainWindow.webContents;
@@ -340,7 +349,7 @@ function createWindow() {
         if ((httpResponseCode == 404) && (newURL == ("http://localhost:"+listenPort+url))) {
             setTimeout(webContents.reload, 200);
         }
-        
+
     });
 
      mainWindow.webContents.on("new-window", function(e, url, frameName, disposition, options) {
