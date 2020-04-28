@@ -1,8 +1,8 @@
 {
     "name": "Workbench",
-    "version": "1.0.4",
+    "version": "20.04.0",
     "description": "Electron Node-RED with ngrok",
-    "author": "zuhito",
+    "author": "sammachin",
     "main": "main.js",
     "scripts": {
         "start": "electron .",
@@ -23,7 +23,7 @@
         "electron-store": "^5.1.1",
         "express": "*",
         "ngrok": "^3.2.7",
-        "node-red": "*",
+        "node-red": "^1.0.0",
         "node-red-contrib-nexmo": "^3.3.0",
         "node-red-dashboard": "*",
         "npm": "^6.14.4",
