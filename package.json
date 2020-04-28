@@ -15,19 +15,19 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/zuhito/electron-node-red.git"
+        "url": "git+https://github.com/sammachin/workbench.git"
     },
     "dependencies": {
         "@vonagevolta/volta2": "0.0.28",
-        "bcryptjs": "^2.4.3",
-        "electron-store": "^5.1.1",
+        "bcryptjs": "~2.4.3",
+        "electron-store": "~5.1.1",
         "express": "*",
-        "ngrok": "^3.2.7",
+        "ngrok": "~3.2.7",
         "node-red": "^1.0.0",
         "node-red-contrib-nexmo": "^3.3.0",
         "node-red-dashboard": "*",
         "npm": "^6.14.4",
-        "request-promise": "^4.2.5",
+        "request-promise": "~4.2.5",
         "workbench-nodered-nodes": "file:./workbench-nodered-nodes"
     },
     "keywords": [
@@ -49,13 +49,16 @@
         },
         {
             "name": "Julia Biro"
+        },
+        {
+            "name": "Alex Lakatos"
         }
     ],
     "license": "Apache-2.0",
     "bugs": {
-        "url": "https://github.com/sammachin/electron-node-red/issues"
+        "url": "https://github.com/sammachin/workbench/issues"
     },
-    "homepage": "https://github.com/sammachin/electron-node-red#readme",
+    "homepage": "https://github.com/sammachin/workbench#readme",
     "devDependencies": {
         "electron": "^8.1.1",
         "electron-builder": "*"
