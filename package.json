@@ -1,6 +1,6 @@
 {
     "name": "Workbench",
-    "version": "20.07.0",
+    "version": "20.7.1",
     "description": "Electron Node-RED with ngrok",
     "author": "sammachin",
     "main": "main.js",
