@@ -77,10 +77,27 @@ var settings = {
   flowFile: flowfile,
   functionGlobalContext: {}, // enables global context
   editorTheme: {
+    page: {
+        title: "Vonage | Communications Workbench",
+        favicon:__dirname + "/assets/vbc-logo.svg",
+        css: __dirname + "/assets/branding.css"
+    },
+    header: {
+        title: " | Communications Workbench",
+        image: __dirname + "/assets/vbc-logo.svg"
+    },
+    deployButton: {
+      type: "simple",
+      label: "Deploy",
+      icon: "null"
+    },
+    login: {
+        image:  __dirname + "/assets/vbc-logo-dark.png"
+    },
     projects: {
-      enabled: false
+        enabled: false
     }
-  },
+},
   adminAuth: {
     type: "credentials",
     users: [{
@@ -535,7 +552,6 @@ function createWindow() {
     icon: __dirname + "/nodered.png"
   });
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
-
 
 
   if (store.has("settings.nodered-username") || store.has("settings.nodered-username")) {
