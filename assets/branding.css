@@ -305,7 +305,7 @@
     font-size: 14px;
     padding: 0px;
     margin: 1px;
-    color: #AD1625;
+    color: #871fff;
     white-space: nowrap
 }
 
@@ -481,14 +481,14 @@
 }
 
 /*!
-* Extracted from Bootstrap v2.3.2
-*
-* Copyright 2013 Twitter, Inc
-* Licensed under the Apache License v2.0
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Designed and built with all the love in the world by @mdo and @fat.
-*/
+ * Extracted from Bootstrap v2.3.2
+ *
+ * Copyright 2013 Twitter, Inc
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Designed and built with all the love in the world by @mdo and @fat.
+ */
 .red-ui-editor button,
 .red-ui-editor input,
 .red-ui-editor select,
@@ -1692,9 +1692,9 @@
 }
 
 .ui-dialog-buttonset button.primary {
-    border-color: #AD1625;
+    border-color: #871fff;
     color: #eee !important;
-    background: #AD1625
+    background: #871fff
 }
 
 .ui-dialog-buttonset button.primary.disabled,
@@ -1705,8 +1705,8 @@
 }
 
 .ui-dialog-buttonset button.primary:not(.disabled):not(.ui-button-disabled):hover {
-    border-color: #6E0A1E;
-    background: #6E0A1E;
+    border-color: #871fffb3;
+    background: #871fffb3;
     color: #eee !important
 }
 
@@ -1728,14 +1728,14 @@
 }
 
 .ui-dialog-buttonset button.primary {
-    border-color: #AD1625;
+    border-color: #871fff;
     color: #eee !important;
-    background: #AD1625
+    background: #871fff
 }
 
 .ui-dialog-buttonset button.primary:not(.disabled):hover {
-    border-color: #6E0A1E;
-    background: #6E0A1E;
+    border-color: #871fffb3;
+    background: #871fffb3;
     color: #eee !important
 }
 
@@ -2244,7 +2244,7 @@ ul.red-ui-menu:not(.red-ui-menu-dropdown).red-ui-menu-compact li a {
 }
 
 #red-ui-header .red-ui-deploy-button:hover {
-    background: #6E0A1E
+    background: #871fffb3
 }
 
 #red-ui-header .red-ui-deploy-button:focus {
@@ -2547,7 +2547,7 @@ ul.red-ui-menu:not(.red-ui-menu-dropdown).red-ui-menu-compact li a {
     background: #fff;
     margin: 10px auto;
     height: 25px;
-    border-radius: 5px;
+    border-radius: 2px;
     border: 1px solid #999;
     background-position: 5% 50%;
     background-repeat: no-repeat;
@@ -2566,7 +2566,7 @@ ul.red-ui-menu:not(.red-ui-menu-dropdown).red-ui-menu-compact li a {
 
 .red-ui-palette-node:hover {
     border-color: transparent;
-    box-shadow: 0 0 0 2px #ff7f0e
+    box-shadow: 0 0 0 2px #871fff
 }
 
 .red-ui-palette-port {
@@ -2812,9 +2812,9 @@ ul.red-ui-menu:not(.red-ui-menu-dropdown).red-ui-menu-compact li a {
 }
 
 #red-ui-sidebar .button.primary {
-    border-color: #AD1625;
+    border-color: #871fff;
     color: #eee !important;
-    background: #AD1625
+    background: #871fff
 }
 
 #red-ui-sidebar .button.primary.disabled,
@@ -2825,8 +2825,8 @@ ul.red-ui-menu:not(.red-ui-menu-dropdown).red-ui-menu-compact li a {
 }
 
 #red-ui-sidebar .button.primary:not(.disabled):not(.ui-button-disabled):hover {
-    border-color: #6E0A1E;
-    background: #6E0A1E;
+    border-color: #871fffb3;
+    background: #871fffb3;
     color: #eee !important
 }
 
@@ -2937,9 +2937,9 @@ ul.red-ui-menu:not(.red-ui-menu-dropdown).red-ui-menu-compact li a {
 }
 
 .sidebar-footer-button.primary {
-    border-color: #AD1625;
+    border-color: #871fff;
     color: #eee !important;
-    background: #AD1625
+    background: #871fff
 }
 
 .sidebar-footer-button.primary.disabled,
@@ -2950,8 +2950,8 @@ ul.red-ui-menu:not(.red-ui-menu-dropdown).red-ui-menu-compact li a {
 }
 
 .sidebar-footer-button.primary:not(.disabled):not(.ui-button-disabled):hover {
-    border-color: #6E0A1E;
-    background: #6E0A1E;
+    border-color: #871fffb3;
+    background: #871fffb3;
     color: #eee !important
 }
 
@@ -3057,9 +3057,9 @@ ul.red-ui-menu:not(.red-ui-menu-dropdown).red-ui-menu-compact li a {
 }
 
 .sidebar-footer-button-toggle.primary {
-    border-color: #AD1625;
+    border-color: #871fff;
     color: #eee !important;
-    background: #AD1625
+    background: #871fff
 }
 
 .sidebar-footer-button-toggle.primary.disabled,
@@ -3070,8 +3070,8 @@ ul.red-ui-menu:not(.red-ui-menu-dropdown).red-ui-menu-compact li a {
 }
 
 .sidebar-footer-button-toggle.primary:not(.disabled):not(.ui-button-disabled):hover {
-    border-color: #6E0A1E;
-    background: #6E0A1E;
+    border-color: #871fffb3;
+    background: #871fffb3;
     color: #eee !important
 }
 
@@ -3241,9 +3241,9 @@ a.sidebar-header-button.primary,
 button.sidebar-header-button.primary,
 a.red-ui-sidebar-header-button.primary,
 button.red-ui-sidebar-header-button.primary {
-    border-color: #AD1625;
+    border-color: #871fff;
     color: #eee !important;
-    background: #AD1625
+    background: #871fff
 }
 
 a.sidebar-header-button.primary.disabled,
@@ -3263,8 +3263,8 @@ a.sidebar-header-button.primary:not(.disabled):not(.ui-button-disabled):hover,
 button.sidebar-header-button.primary:not(.disabled):not(.ui-button-disabled):hover,
 a.red-ui-sidebar-header-button.primary:not(.disabled):not(.ui-button-disabled):hover,
 button.red-ui-sidebar-header-button.primary:not(.disabled):not(.ui-button-disabled):hover {
-    border-color: #6E0A1E;
-    background: #6E0A1E;
+    border-color: #871fffb3;
+    background: #871fffb3;
     color: #eee !important
 }
 
@@ -3417,9 +3417,9 @@ a.sidebar-header-button.toggle.primary,
 button.sidebar-header-button.toggle.primary,
 a.red-ui-sidebar-header-button.toggle.primary,
 button.red-ui-sidebar-header-button.toggle.primary {
-    border-color: #AD1625;
+    border-color: #871fff;
     color: #eee !important;
-    background: #AD1625
+    background: #871fff
 }
 
 a.sidebar-header-button.toggle.primary.disabled,
@@ -3439,8 +3439,8 @@ a.sidebar-header-button.toggle.primary:not(.disabled):not(.ui-button-disabled):h
 button.sidebar-header-button.toggle.primary:not(.disabled):not(.ui-button-disabled):hover,
 a.red-ui-sidebar-header-button.toggle.primary:not(.disabled):not(.ui-button-disabled):hover,
 button.red-ui-sidebar-header-button.toggle.primary:not(.disabled):not(.ui-button-disabled):hover {
-    border-color: #6E0A1E;
-    background: #6E0A1E;
+    border-color: #871fffb3;
+    background: #871fffb3;
     color: #eee !important
 }
 
@@ -3620,9 +3620,9 @@ a.sidebar-header-button-toggle.primary,
 button.sidebar-header-button-toggle.primary,
 a.red-ui-sidebar-header-button-toggle.primary,
 button.red-ui-sidebar-header-button-toggle.primary {
-    border-color: #AD1625;
+    border-color: #871fff;
     color: #eee !important;
-    background: #AD1625
+    background: #871fff
 }
 
 a.sidebar-header-button-toggle.primary.disabled,
@@ -3642,8 +3642,8 @@ a.sidebar-header-button-toggle.primary:not(.disabled):not(.ui-button-disabled):h
 button.sidebar-header-button-toggle.primary:not(.disabled):not(.ui-button-disabled):hover,
 a.red-ui-sidebar-header-button-toggle.primary:not(.disabled):not(.ui-button-disabled):hover,
 button.red-ui-sidebar-header-button-toggle.primary:not(.disabled):not(.ui-button-disabled):hover {
-    border-color: #6E0A1E;
-    background: #6E0A1E;
+    border-color: #871fffb3;
+    background: #871fffb3;
     color: #eee !important
 }
 
@@ -3973,9 +3973,9 @@ button.red-ui-footer-button:focus {
 
 a.red-ui-footer-button.primary,
 button.red-ui-footer-button.primary {
-    border-color: #AD1625;
+    border-color: #871fff;
     color: #eee !important;
-    background: #AD1625
+    background: #871fff
 }
 
 a.red-ui-footer-button.primary.disabled,
@@ -3989,8 +3989,8 @@ button.red-ui-footer-button.primary.ui-state-disabled {
 
 a.red-ui-footer-button.primary:not(.disabled):not(.ui-button-disabled):hover,
 button.red-ui-footer-button.primary:not(.disabled):not(.ui-button-disabled):hover {
-    border-color: #6E0A1E;
-    background: #6E0A1E;
+    border-color: #871fffb3;
+    background: #871fffb3;
     color: #eee !important
 }
 
@@ -4116,9 +4116,9 @@ button.red-ui-footer-button-toggle:focus {
 
 a.red-ui-footer-button-toggle.primary,
 button.red-ui-footer-button-toggle.primary {
-    border-color: #AD1625;
+    border-color: #871fff;
     color: #eee !important;
-    background: #AD1625
+    background: #871fff
 }
 
 a.red-ui-footer-button-toggle.primary.disabled,
@@ -4132,8 +4132,8 @@ button.red-ui-footer-button-toggle.primary.ui-state-disabled {
 
 a.red-ui-footer-button-toggle.primary:not(.disabled):not(.ui-button-disabled):hover,
 button.red-ui-footer-button-toggle.primary:not(.disabled):not(.ui-button-disabled):hover {
-    border-color: #6E0A1E;
-    background: #6E0A1E;
+    border-color: #871fffb3;
+    background: #871fffb3;
     color: #eee !important
 }
 
@@ -4359,9 +4359,9 @@ button.red-ui-footer-button-toggle.text-button {
 }
 
 #red-ui-workspace-toolbar .button.primary {
-    border-color: #AD1625;
+    border-color: #871fff;
     color: #eee !important;
-    background: #AD1625
+    background: #871fff
 }
 
 #red-ui-workspace-toolbar .button.primary.disabled,
@@ -4372,8 +4372,8 @@ button.red-ui-footer-button-toggle.text-button {
 }
 
 #red-ui-workspace-toolbar .button.primary:not(.disabled):not(.ui-button-disabled):hover {
-    border-color: #6E0A1E;
-    background: #6E0A1E;
+    border-color: #871fffb3;
+    background: #871fffb3;
     color: #eee !important
 }
 
@@ -4470,7 +4470,7 @@ button.red-ui-footer-button-toggle.text-button {
 }
 
 .red-ui-notification-error {
-    border-color: #AD1625
+    border-color: #871fff
 }
 
 .red-ui-notification-compact p {
@@ -4740,9 +4740,9 @@ button.red-ui-footer-button-toggle.text-button {
 }
 
 .red-ui-tray-toolbar button.primary {
-    border-color: #AD1625;
+    border-color: #871fff;
     color: #eee !important;
-    background: #AD1625
+    background: #871fff
 }
 
 .red-ui-tray-toolbar button.primary.disabled,
@@ -4753,8 +4753,8 @@ button.red-ui-footer-button-toggle.text-button {
 }
 
 .red-ui-tray-toolbar button.primary:not(.disabled):not(.ui-button-disabled):hover {
-    border-color: #6E0A1E;
-    background: #6E0A1E;
+    border-color: #871fffb3;
+    background: #871fffb3;
     color: #eee !important
 }
 
@@ -4871,9 +4871,9 @@ button.red-ui-footer-button-toggle.text-button {
 }
 
 .red-ui-tray-toolbar button.toggle.primary {
-    border-color: #AD1625;
+    border-color: #871fff;
     color: #eee !important;
-    background: #AD1625
+    background: #871fff
 }
 
 .red-ui-tray-toolbar button.toggle.primary.disabled,
@@ -4884,8 +4884,8 @@ button.red-ui-footer-button-toggle.text-button {
 }
 
 .red-ui-tray-toolbar button.toggle.primary:not(.disabled):not(.ui-button-disabled):hover {
-    border-color: #6E0A1E;
-    background: #6E0A1E;
+    border-color: #871fffb3;
+    background: #871fffb3;
     color: #eee !important
 }
 
@@ -5067,9 +5067,9 @@ button.red-ui-tray-resize-button:focus {
 
 a.red-ui-tray-resize-button.primary,
 button.red-ui-tray-resize-button.primary {
-    border-color: #AD1625;
+    border-color: #871fff;
     color: #eee !important;
-    background: #AD1625
+    background: #871fff
 }
 
 a.red-ui-tray-resize-button.primary.disabled,
@@ -5083,8 +5083,8 @@ button.red-ui-tray-resize-button.primary.ui-state-disabled {
 
 a.red-ui-tray-resize-button.primary:not(.disabled):not(.ui-button-disabled):hover,
 button.red-ui-tray-resize-button.primary:not(.disabled):not(.ui-button-disabled):hover {
-    border-color: #6E0A1E;
-    background: #6E0A1E;
+    border-color: #871fffb3;
+    background: #871fffb3;
     color: #eee !important
 }
 
@@ -5122,7 +5122,7 @@ button.red-ui-tray-resize-button.secondary:not(:hover) {
 
 .red-ui-editor .input-updated,
 .red-ui-editor-dialog .input-updated {
-    border-color: #ff7f0e !important
+    border-color: #871fff !important
 }
 
 .red-ui-editor .form-row,
@@ -5167,7 +5167,7 @@ button.red-ui-tray-resize-button.secondary:not(:hover) {
 
 .red-ui-editor .form-warning,
 .red-ui-editor-dialog .form-warning {
-    border-color: #AD1625
+    border-color: #871fff
 }
 
 .node-text-editor {
@@ -5339,9 +5339,9 @@ a.editor-button.primary,
 button.editor-button.primary,
 a.red-ui-button.primary,
 button.red-ui-button.primary {
-    border-color: #AD1625;
+    border-color: #871fff;
     color: #eee !important;
-    background: #AD1625
+    background: #871fff
 }
 
 a.editor-button.primary.disabled,
@@ -5361,8 +5361,8 @@ a.editor-button.primary:not(.disabled):not(.ui-button-disabled):hover,
 button.editor-button.primary:not(.disabled):not(.ui-button-disabled):hover,
 a.red-ui-button.primary:not(.disabled):not(.ui-button-disabled):hover,
 button.red-ui-button.primary:not(.disabled):not(.ui-button-disabled):hover {
-    border-color: #6E0A1E;
-    background: #6E0A1E;
+    border-color: #871fffb3;
+    background: #871fffb3;
     color: #eee !important
 }
 
@@ -5515,9 +5515,9 @@ a.editor-button.toggle.primary,
 button.editor-button.toggle.primary,
 a.red-ui-button.toggle.primary,
 button.red-ui-button.toggle.primary {
-    border-color: #AD1625;
+    border-color: #871fff;
     color: #eee !important;
-    background: #AD1625
+    background: #871fff
 }
 
 a.editor-button.toggle.primary.disabled,
@@ -5537,8 +5537,8 @@ a.editor-button.toggle.primary:not(.disabled):not(.ui-button-disabled):hover,
 button.editor-button.toggle.primary:not(.disabled):not(.ui-button-disabled):hover,
 a.red-ui-button.toggle.primary:not(.disabled):not(.ui-button-disabled):hover,
 button.red-ui-button.toggle.primary:not(.disabled):not(.ui-button-disabled):hover {
-    border-color: #6E0A1E;
-    background: #6E0A1E;
+    border-color: #871fffb3;
+    background: #871fffb3;
     color: #eee !important
 }
 
@@ -5595,7 +5595,7 @@ button.red-ui-button-small {
 #red-ui-editor-config-scope-warning {
     display: inline-block;
     margin-right: 5px;
-    color: #AD1625;
+    color: #871fff;
     vertical-align: middle
 }
 
@@ -7166,9 +7166,9 @@ li.selected .red-ui-search-result {
 }
 
 .red-ui-tab-button a.primary {
-    border-color: #AD1625;
+    border-color: #871fff;
     color: #eee !important;
-    background: #AD1625
+    background: #871fff
 }
 
 .red-ui-tab-button a.primary.disabled,
@@ -7179,8 +7179,8 @@ li.selected .red-ui-search-result {
 }
 
 .red-ui-tab-button a.primary:not(.disabled):not(.ui-button-disabled):hover {
-    border-color: #6E0A1E;
-    background: #6E0A1E;
+    border-color: #871fffb3;
+    background: #871fffb3;
     color: #eee !important
 }
 
@@ -7292,9 +7292,9 @@ li.selected .red-ui-search-result {
 }
 
 .red-ui-tab-link-buttons a.primary {
-    border-color: #AD1625;
+    border-color: #871fff;
     color: #eee !important;
-    background: #AD1625
+    background: #871fff
 }
 
 .red-ui-tab-link-buttons a.primary.disabled,
@@ -7305,8 +7305,8 @@ li.selected .red-ui-search-result {
 }
 
 .red-ui-tab-link-buttons a.primary:not(.disabled):not(.ui-button-disabled):hover {
-    border-color: #6E0A1E;
-    background: #6E0A1E;
+    border-color: #871fffb3;
+    background: #871fffb3;
     color: #eee !important
 }
 
@@ -7491,7 +7491,7 @@ ul.red-ui-sidebar-node-config-list .red-ui-palette-node {
 
 ul.red-ui-sidebar-node-config-list .red-ui-palette-node.selected {
     border-color: transparent;
-    box-shadow: 0 0 0 2px #ff7f0e
+    box-shadow: 0 0 0 2px #871fff
 }
 
 ul.red-ui-sidebar-node-config-list .red-ui-palette-label {
@@ -7817,7 +7817,7 @@ div.red-ui-info-table {
     font-family: Menlo, Consolas, "DejaVu Sans Mono", Courier, monospace;
     font-weight: normal;
     margin: 5px 3px 1px;
-    color: #AD1625;
+    color: #871fff;
     white-space: nowrap
 }
 
@@ -8392,7 +8392,7 @@ div.red-ui-info-table {
 
 .nr-ui-view-lasso {
     stroke-width: 1px;
-    stroke: #ff7f0e;
+    stroke: #871fff;
     fill: rgba(20, 125, 255, 0.1);
     stroke-dasharray: 10 5
 }
@@ -8463,7 +8463,7 @@ div.red-ui-info-table {
 
 .red-ui-workspace-select-mode g.red-ui-flow-node.red-ui-flow-node-hovered:not(.red-ui-flow-node-selected) .red-ui-flow-node {
     stroke-width: 2;
-    stroke: #ff7f0e !important;
+    stroke: #871fff !important;
     stroke-dasharray: 10, 4
 }
 
@@ -8478,7 +8478,7 @@ div.red-ui-info-table {
 
 .red-ui-flow-group-outline {
     fill: none;
-    stroke: #ff7f0e;
+    stroke: #871fff;
     stroke-opacity: 0;
     stroke-width: 12;
     pointer-events: stroke
@@ -8486,7 +8486,7 @@ div.red-ui-info-table {
 
 .red-ui-flow-group-outline-select {
     fill: none;
-    stroke: #ff7f0e;
+    stroke: #871fff;
     pointer-events: stroke;
     stroke-opacity: 0;
     stroke-width: 3
@@ -8593,13 +8593,13 @@ div.red-ui-info-table {
 g.red-ui-flow-node-selected .red-ui-flow-node,
 g.red-ui-flow-node-selected .red-ui-flow-subflow-port {
     stroke-width: 2;
-    stroke: #ff7f0e !important
+    stroke: #871fff !important
 }
 
 .red-ui-flow-node-highlighted {
-    border-color: #ff7f0e !important;
+    border-color: #871fff !important;
     border-style: dashed !important;
-    stroke: #ff7f0e;
+    stroke: #871fff;
     stroke-width: 3;
     stroke-dasharray: 8, 4
 }
@@ -8705,8 +8705,8 @@ g.red-ui-flow-node-selected .red-ui-flow-subflow-port {
 }
 
 .red-ui-flow-port-hovered {
-    stroke: #ff7f0e;
-    fill: #ff7f0e
+    stroke: #871fff;
+    fill: #871fff
 }
 
 .red-ui-flow-subflow-port {
@@ -8715,7 +8715,7 @@ g.red-ui-flow-node-selected .red-ui-flow-subflow-port {
 }
 
 .red-ui-flow-drag-line {
-    stroke: #ff7f0e !important;
+    stroke: #871fff !important;
     stroke-width: 3;
     fill: none;
     pointer-events: none
@@ -8746,7 +8746,7 @@ g.red-ui-flow-node-selected .red-ui-flow-subflow-port {
 }
 
 .red-ui-flow-link-group-active .red-ui-flow-link-port {
-    stroke: #ff7f0e
+    stroke: #871fff
 }
 
 .red-ui-flow-link-group:hover {
@@ -8775,7 +8775,7 @@ g.red-ui-flow-node-selected .red-ui-flow-subflow-port {
 }
 
 g.red-ui-flow-link-selected path.red-ui-flow-link-line {
-    stroke: #ff7f0e
+    stroke: #871fff
 }
 
 g.red-ui-flow-link-unknown path.red-ui-flow-link-line {
@@ -8990,7 +8990,7 @@ g.red-ui-flow-link-unknown path.red-ui-flow-link-line {
     display: block;
     text-align: center;
     padding: 12px 8px;
-    color: #AD1625
+    color: #871fff
 }
 
 #red-ui-palette-editor .red-ui-palette-module-more a:hover {
@@ -9046,7 +9046,7 @@ g.red-ui-flow-link-unknown path.red-ui-flow-link-line {
 }
 
 .red-ui-palette-module-meta .fa-warning {
-    color: #AD1625
+    color: #871fff
 }
 
 ul.red-ui-palette-module-error-list {
@@ -10251,11 +10251,11 @@ ul.red-ui-deploy-dialog-confirm-list {
 }
 
 #red-ui-project-settings-tab-deps .red-ui-palette-module-not-installed {
-    border: 1px dashed #AD1625
+    border: 1px dashed #871fff
 }
 
 #red-ui-project-settings-tab-deps .red-ui-palette-module-not-installed i.fa-warning {
-    color: #AD1625
+    color: #871fff
 }
 
 .red-ui-project-settings-tab-pane {
@@ -11879,4 +11879,23 @@ button.red-ui-typedInput-option-trigger:focus .red-ui-typedInput-option-caret {
 
 .red-ui-editor-radial-menu-opt-active {
     background: #e6e6e6
+}
+
+/* Custom CSS */
+
+#red-ui-header .red-ui-deploy-button {
+    background: #871fff;
+}
+
+#red-ui-header .red-ui-deploy-button:hover {
+    background: #871fffb3;
+}
+
+#red-ui-notifications .red-ui-notification-success {
+    border-color: #871fff;
+}
+
+rect.red-ui-flow-node {
+    rx: 2;
+    ry: 2;
 }
